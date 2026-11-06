@@ -37,7 +37,7 @@ flowchart LR
 1. Create a project.
 2. SQL Editor → run [`db/schema.sql`](db/schema.sql). It is safe to re-run.
 3. Storage → new **public** bucket named `blog-images`.
-4. Project Settings → Database → copy the **Transaction pooler** connection string (port 6543).
+4. Connect the Supabase integration to both Vercel projects (Vercel → Storage, or the Supabase Marketplace integration). It sets `POSTGRES_URL`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY` and others. Leave the env var prefix empty.
 
 ### 2. Admin password
 
@@ -80,4 +80,4 @@ Add each app's env vars from its `.env.example` in the Vercel project settings.
 - Login is limited to 5 failed attempts per IP per 15 minutes. The counter lives in memory, so it resets on each serverless cold start.
 - Raw HTML in Markdown is not rendered.
 - All tables have RLS enabled with no policies, so Supabase's public REST API cannot read them. The apps connect as the database owner.
-- `SUPABASE_SERVICE_ROLE_KEY` is only used server-side in the admin app.
+- `SUPABASE_SECRET_KEY` is only used server-side in the admin app.

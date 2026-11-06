@@ -21,13 +21,13 @@ export async function POST(req: NextRequest) {
   if (!ext) return NextResponse.json({ error: "Use PNG, JPEG, WebP, GIF or AVIF" }, { status: 400 });
   if (file.size > MAX_BYTES) return NextResponse.json({ error: "Max 4 MB" }, { status: 400 });
 
-  const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY } = process.env;
+  const { SUPABASE_URL, SUPABASE_SECRET_KEY } = process.env;
   const bucket = process.env.SUPABASE_STORAGE_BUCKET || "blog-images";
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
     return NextResponse.json({ error: "Supabase storage is not configured" }, { status: 500 });
   }
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } });
+  const supabase = createClient(SUPABASE_URL, SUPABASE_SECRET_KEY, { auth: { persistSession: false } });
   const path = `posts/${new Date().getFullYear()}/${randomUUID()}.${ext}`;
   const { error } = await supabase.storage.from(bucket).upload(path, file, {
     contentType: file.type,
