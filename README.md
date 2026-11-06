@@ -37,7 +37,7 @@ flowchart LR
 1. Create a project.
 2. SQL Editor → run [`db/schema.sql`](db/schema.sql). It is safe to re-run.
 3. Storage → new **public** bucket named `blog-images`.
-4. Connect the Supabase integration to both Vercel projects (Vercel → Storage, or the Supabase Marketplace integration). It sets `POSTGRES_URL`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY` and others. Leave the env var prefix empty.
+4. Connect the Supabase integration to both Vercel projects (Vercel → Storage, or the Supabase Marketplace integration). It sets `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Leave the env var prefix empty. Then add `DATABASE_URL` yourself: Supabase → Connect → Transaction pooler (port 6543).
 
 ### 2. Admin password
 
