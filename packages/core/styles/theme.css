@@ -1,0 +1,237 @@
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+@import "@fontsource-variable/source-serif-4/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+
+:root,
+:root[data-theme="light"] {
+  --bg: #f7f7f5;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #efefec;
+  --text: #13111c;
+  --text-muted: #5b5868;
+  --text-faint: #8a8794;
+  --border: rgba(19, 17, 28, 0.09);
+  --border-strong: rgba(19, 17, 28, 0.16);
+  --accent: #0a8f6c;
+  --accent-soft: rgba(8, 248, 184, 0.16);
+  --mint: #08f8b8;
+  --btn-bg: #13111c;
+  --btn-text: #faf9f6;
+  --btn-ghost-bg: #faf9f6;
+  --code-bg: #ffffff;
+  --shadow: 0 1px 2px rgba(19, 17, 28, 0.04), 0 8px 24px rgba(19, 17, 28, 0.05);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #282828;
+  --bg-elevated: #2e2e2e;
+  --bg-sunken: #212121;
+  --text: #f5f7f6;
+  --text-muted: #b4b8b6;
+  --text-faint: #939593;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --accent: #08f8b8;
+  --accent-soft: rgba(8, 248, 184, 0.1);
+  --btn-bg: #08f8b8;
+  --btn-text: #0f1a16;
+  --btn-ghost-bg: rgba(255, 255, 255, 0.04);
+  --code-bg: #212121;
+  --shadow: none;
+  color-scheme: dark;
+}
+
+:root {
+  --font-ui: "Poppins", system-ui, sans-serif;
+  --font-read: "Source Serif 4 Variable", Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --radius: 12px;
+  --pill: 999px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #08f8b8, #0a8f6c);
+  color: #0f1a16;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.brand-sub {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: var(--pill);
+}
+
+.nav-link:hover {
+  color: var(--text);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: var(--pill);
+  border: 1px solid transparent;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font: 500 13.5px/1 var(--font-ui);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.btn:hover {
+  opacity: 0.88;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.btn-ghost {
+  background: var(--btn-ghost-bg);
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.btn-danger {
+  background: transparent;
+  color: #d4483b;
+  border-color: color-mix(in srgb, #d4483b 40%, transparent);
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--pill);
+  border: 1px solid var(--border-strong);
+  background: var(--btn-ghost-bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  border-color: var(--accent);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--pill);
+  background: var(--bg-sunken);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.chip-accent {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.muted {
+  color: var(--text-muted);
+}

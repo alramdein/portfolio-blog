@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-blog",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev:blog": "npm run dev -w @blog/web",
+    "dev:admin": "npm run dev -w @blog/admin",
+    "build": "npm run build -w @blog/web && npm run build -w @blog/admin",
+    "test": "vitest run",
+    "typecheck": "tsc -p apps/blog --noEmit && tsc -p apps/admin --noEmit",
+    "hash-password": "node scripts/hash-password.mjs"
+  },
+  "devDependencies": {
+    "vitest": "^5.1.0"
+  }
+}

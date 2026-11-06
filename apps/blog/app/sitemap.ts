@@ -1,0 +1,13 @@
+import type { MetadataRoute } from "next";
+import { listPublished } from "@/lib/posts";
+
+export const dynamic = "force-dynamic";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const posts = await listPublished();
+  return [
+    { url: base },
+    ...posts.map((p) => ({ url: `${base}/${p.slug}`, lastModified: p.last_published_at })),
+  ];
+}
