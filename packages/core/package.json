@@ -8,7 +8,8 @@
     "./markdown": "./src/markdown.ts",
     "./format": "./src/format.ts",
     "./client": "./src/client.tsx",
-    "./styles/*": "./styles/*"
+    "./styles/*": "./styles/*",
+    "./icon": "./src/icon.tsx"
   },
   "dependencies": {
     "@fontsource-variable/jetbrains-mono": "^5.2.0",
