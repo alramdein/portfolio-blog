@@ -9,19 +9,12 @@
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.1;
-  margin: 18px 0 10px;
+  margin: 0 0 10px;
 }
 
 .home-hero p {
   font-size: 17px;
   margin: 0 0 24px;
-}
-
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
 }
 
 .empty {
