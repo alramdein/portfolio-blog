@@ -39,6 +39,8 @@ export default async function Dashboard() {
                 <th>Status</th>
                 <th className="num">Views</th>
                 <th className="num">Unique</th>
+                <th className="num">👍</th>
+                <th className="num">👎</th>
                 <th>Last edited</th>
               </tr>
             </thead>
@@ -55,6 +57,8 @@ export default async function Dashboard() {
                   </td>
                   <td className="num">{p.views.toLocaleString("en-US")}</td>
                   <td className="num">{p.unique_views.toLocaleString("en-US")}</td>
+                  <td className="num">{p.likes.toLocaleString("en-US")}</td>
+                  <td className="num">{p.dislikes.toLocaleString("en-US")}</td>
                   <td className="muted">{formatDate(p.updated_at, true)}</td>
                 </tr>
               ))}

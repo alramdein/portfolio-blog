@@ -15,7 +15,9 @@ export type PostRow = {
   updated_at: Date;
 };
 
-export type PostListItem = PostRow & { unique_views: number; has_unpublished_changes: boolean };
+export type PostListItem = PostRow & { unique_views: number; likes: number; dislikes: number; has_unpublished_changes: boolean };
+
+export type Feedback = { post_id: number; post_title: string; slug: string; value: 1 | -1; feedback: string; updated_at: Date };
 
 export type Version = { id: number; post_id: number; title: string; excerpt: string; content: string; created_at: Date };
 
@@ -25,9 +27,21 @@ export async function listPosts() {
   return db()<PostListItem[]>`
     select p.*, p.views::int as views,
       (select count(*)::int from post_visitors pv where pv.post_id = p.id) as unique_views,
+      (select count(*)::int from post_reactions r where r.post_id = p.id and r.value = 1) as likes,
+      (select count(*)::int from post_reactions r where r.post_id = p.id and r.value = -1) as dislikes,
       (p.status = 'published' and (v.title, v.excerpt, v.content) is distinct from (p.title, p.excerpt, p.content)) as has_unpublished_changes
     from posts p left join post_versions v on v.id = p.published_version_id
     order by p.updated_at desc
+  `;
+}
+
+export async function listFeedback() {
+  return db()<Feedback[]>`
+    select r.post_id, p.title as post_title, p.slug, r.value, r.feedback, r.updated_at
+    from post_reactions r join posts p on p.id = r.post_id
+    where r.feedback <> ''
+    order by r.updated_at desc
+    limit 200
   `;
 }
 

@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { Article } from "@blog/core/client";
 import { formatDate, readingMinutes } from "@blog/core/format";
 import { renderMarkdown } from "@blog/core/markdown";
 import { PostMeta } from "@/components/PostMeta";
+import { Reactions } from "@/components/Reactions";
 import { ViewTracker } from "@/components/ViewTracker";
 import { getPublished } from "@/lib/posts";
+import { VOTER_COOKIE, getReactions } from "@/lib/reactions";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +32,10 @@ export default async function PostPage({ params }: Params) {
   const post = await getPublished((await params).slug);
   if (!post) notFound();
 
-  const html = await renderMarkdown(post.content);
+  const [html, reactions] = await Promise.all([
+    renderMarkdown(post.content),
+    getReactions(post.id, (await cookies()).get(VOTER_COOKIE)?.value),
+  ]);
   const updated = new Date(post.last_published_at).getTime() - new Date(post.published_at).getTime() > UPDATE_THRESHOLD_MS;
 
   return (
@@ -48,6 +54,7 @@ export default async function PostPage({ params }: Params) {
         {post.excerpt && <p className="post-lede">{post.excerpt}</p>}
       </header>
       <Article html={html} />
+      <Reactions slug={post.slug} initial={reactions} />
       <ViewTracker slug={post.slug} />
     </article>
   );

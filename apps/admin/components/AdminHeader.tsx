@@ -15,6 +15,7 @@ export function AdminHeader() {
           </span>
         </Link>
         <nav className="nav">
+          <Link className="nav-link" href="/feedback">Feedback</Link>
           <a className="nav-link" href={blogUrl} target="_blank" rel="noreferrer">View blog ↗</a>
           <ThemeToggle />
           <form action={logout}>

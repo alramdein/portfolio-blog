@@ -36,6 +36,7 @@ flowchart LR
 
 1. Create a project.
 2. SQL Editor → run [`db/schema.sql`](db/schema.sql). It is safe to re-run.
+   An existing database instead runs the files in [`db/migrations/`](db/migrations) it hasn't had yet, oldest first. `schema.sql` always holds the full current schema.
 3. Storage → new **public** bucket named `blog-images`.
 4. Connect the Supabase integration to both Vercel projects (Vercel → Storage, or the Supabase Marketplace integration). It sets `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Leave the env var prefix empty. Then add `DATABASE_URL` yourself: Supabase → Connect → Transaction pooler (port 6543).
 
