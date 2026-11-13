@@ -6,12 +6,11 @@ import "@blog/core/styles/prose.css";
 import "./blog.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-const portfolioUrl = process.env.NEXT_PUBLIC_PORTFOLIO_URL || "https://www.aliframdani.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Alif Ramdani — Blog", template: "%s — Alif Ramdani" },
-  description: "Notes on backend engineering, distributed systems and the things I build.",
+  description: "Stories from building things, and my thoughts along the way.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -31,7 +30,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </span>
             </Link>
             <nav className="nav">
-              <a className="nav-link" href={portfolioUrl}>Portfolio ↗</a>
               <ThemeToggle />
             </nav>
           </div>
@@ -40,7 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="site-footer">
           <div className="container">
             <span>© {new Date().getFullYear()} Alif Ramdani</span>
-            <a href={portfolioUrl}>aliframdani.com</a>
           </div>
         </footer>
       </body>

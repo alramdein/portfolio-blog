@@ -394,3 +394,8 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
 }
+
+.feedback-text {
+  white-space: pre-wrap;
+  max-width: 520px;
+}

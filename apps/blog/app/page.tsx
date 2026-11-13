@@ -9,9 +9,8 @@ export default async function Home() {
   return (
     <div className="container home">
       <section className="home-hero">
-        <span className="chip chip-accent"><span className="dot" /> Writing</span>
-        <h1>Notes from the backend.</h1>
-        <p className="muted">Distributed systems, databases, and what I learn shipping them.</p>
+        <h1>Stories from building.</h1>
+        <p className="muted">I write down my experience building things, and my thoughts along the way.</p>
       </section>
       {posts.length === 0 ? (
         <p className="muted empty">Nothing published yet.</p>
